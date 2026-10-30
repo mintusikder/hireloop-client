@@ -162,7 +162,7 @@ export default function SignupPage() {
                 <p>{successMessage}</p>
 
                 <Link
-                  href="/signin"
+                  href="/auth/signin"
                   className="mt-2 inline-flex items-center gap-1 font-semibold underline underline-offset-4 hover:text-emerald-200"
                 >
                   Sign in now
@@ -302,7 +302,7 @@ export default function SignupPage() {
           <p className="mt-7 text-center text-sm text-white/55">
             Already have an account?{" "}
             <Link
-              href="/signin"
+              href="/auth/signin"
               className="font-semibold text-indigo-400 transition hover:text-indigo-300"
             >
               Sign In

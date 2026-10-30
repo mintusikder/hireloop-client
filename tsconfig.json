@@ -33,7 +33,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/lib/auth-client.js"  ],
   "exclude": [
     "node_modules"
   ]
