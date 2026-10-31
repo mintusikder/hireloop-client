@@ -1,5 +1,5 @@
-import HomeHero from "../components/HomeHero";
-import HomeStats from "../components/HomeStats";
+import HomeHero from "../../components/HomeHero";
+import HomeStats from "../../components/HomeStats";
 
 export default function Home() {
   return (

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -26,7 +25,7 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+const [role, setRole] = useState("job-seeker");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -67,17 +66,18 @@ export default function SignupPage() {
         name: trimmedName,
         email: trimmedEmail,
         password,
+        role,
       });
 
       if (error) {
         setErrorMessage(
-          error.message || "Unable to create your account. Please try again."
+          error.message || "Unable to create your account. Please try again.",
         );
         return;
       }
 
       setSuccessMessage(
-        "Your account has been created successfully! You can now sign in."
+        "Your account has been created successfully! You can now sign in.",
       );
 
       setName("");
@@ -87,7 +87,7 @@ export default function SignupPage() {
       setErrorMessage(
         error instanceof Error
           ? error.message
-          : "Something went wrong. Please try again."
+          : "Something went wrong. Please try again.",
       );
     } finally {
       setLoading(false);
@@ -265,17 +265,78 @@ export default function SignupPage() {
                   aria-pressed={showPassword}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 transition hover:text-white"
                 >
-                  {showPassword ? (
-                    <EyeOff size={18} />
-                  ) : (
-                    <Eye size={18} />
-                  )}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
 
               <p className="mt-2 text-xs text-white/40">
                 Use at least 8 characters.
               </p>
+            </div>
+
+            {/* Account Role */}
+            <div>
+              <label className="mb-3 block text-sm font-medium text-white/85">
+                Choose Your Account Type
+              </label>
+
+              <div className="grid grid-cols-2 gap-3">
+                {/* Job Seeker */}
+                <label
+                  className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition ${
+                    role === "job-seeker"
+                      ? "border-indigo-500 bg-indigo-500/10"
+                      : "border-white/10 bg-black/20 hover:border-white/20"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="role"
+                    value="job-seeker"
+                    checked={role === "job-seeker"}
+                    onChange={(e) => setRole(e.target.value)}
+                    disabled={loading}
+                    className="h-4 w-4 accent-indigo-500"
+                  />
+
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      Job Seeker
+                    </p>
+                    <p className="mt-1 text-xs text-white/45">
+                      Find your dream job
+                    </p>
+                  </div>
+                </label>
+
+                {/* Recruiter */}
+                <label
+                  className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition ${
+                    role === "recruiter"
+                      ? "border-indigo-500 bg-indigo-500/10"
+                      : "border-white/10 bg-black/20 hover:border-white/20"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="role"
+                    value="recruiter"
+                    checked={role === "recruiter"}
+                    onChange={(e) => setRole(e.target.value)}
+                    disabled={loading}
+                    className="h-4 w-4 accent-indigo-500"
+                  />
+
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      Recruiter
+                    </p>
+                    <p className="mt-1 text-xs text-white/45">
+                      Hire talented people
+                    </p>
+                  </div>
+                </label>
+              </div>
             </div>
 
             {/* Submit */}
